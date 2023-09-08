@@ -1,0 +1,78 @@
+.contenedor-nombre-usuario {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #737373;
+  height: 40px;
+}
+
+.nombre-autor {
+  color: #d9d9d9;
+  font-size: 14px;
+}
+
+.tiempo-publicacion {
+  font-size: 11px;
+  margin-top: 5px;
+  color: rgb(157, 157, 157);
+}
+
+.contenedor-foto-perfil {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.contenedor-foto-perfil img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+ion-footer {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+ion-item ion-button {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+//
+ion-list ion-item {
+  background-color: transparent;
+}
+
+.ripple-parent {
+  position: relative;
+  overflow: hidden;
+  width: 100% !important;
+  height: 100%;
+  padding: 10px;
+}
+
+.contenedor-opcion {
+  display: flex;
+}
+
+.rounded-rectangle {
+  width: 185px;
+  height: 65px;
+  border-radius: 8px;
+}
+
+ion-footer ion-button {
+  --background: rgb(76, 76, 76);
+  --border: none;
+  --box-shadow: transparent;
+}

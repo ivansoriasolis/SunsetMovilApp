@@ -1,0 +1,54 @@
+<div
+  class="seccion-retroceder"
+  style="width: 100px; display: flex; align-items: center"
+>
+  <ion-back-button defaultHref="/usuario/perfilusuario" id="btn-volver-login"
+    >Salir</ion-back-button
+  >
+  <span><b>Seguidos</b></span>
+</div>
+<ion-content>
+  <ion-list
+    *ngIf="moduloCargado"
+    class="ion-margin-horizontal"
+    style="--background: transparent"
+  >
+    <div
+      *ngIf="datosSeguidores.length == 0"
+      class="ion-padding-horizontal ion-text-center"
+    >
+      <span style="color: #c2c2c2">El usuario aún no sigue a nadie</span>
+    </div>
+
+    <div
+      *ngIf="datosSeguidores.length != 0"
+      style="display: flex; flex-direction: column; gap: 10px"
+    >
+      <ion-item *ngFor="let dato of datosSeguidores" lines="none">
+        <div class="contenedor-datos-publicacion">
+          <div class="contenedor-img">
+            <img [src]="dato.foto_seguido" />
+          </div>
+          <div class="contenedor-nombre-fecha">
+            <span
+              (click)="verPerfilUsuario(dato.uid_seguido, dato.foto_seguido, dato.nombre_seguido)"
+              class="nombre-autor"
+              ><b>{{dato.nombre_seguido}}</b></span
+            >
+            <span class="tiempo-publicacion" style="color: #c2c2c2"
+              >Hace {{dato.fecha_seguir}}</span
+            >
+          </div>
+        </div>
+      </ion-item>
+    </div>
+  </ion-list>
+
+  <ion-item *ngIf="!moduloCargado" class="ion-padding-horizontal" lines="none">
+    <ion-spinner
+      color="medium"
+      name="crescent"
+      style="width: 50px; height: 50px; margin: 0 auto"
+    ></ion-spinner>
+  </ion-item>
+</ion-content>

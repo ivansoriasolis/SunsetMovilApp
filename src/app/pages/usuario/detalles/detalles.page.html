@@ -1,0 +1,20 @@
+<ion-content class="ion-padding">
+  <div
+    (click)="verPerfil()"
+    class="contenedor-opcion ion-activatable ripple-parent rounded-rectangle"
+  >
+    <div class="contenedor-foto-perfil">
+      <img [src]="url_imagen" />
+    </div>
+
+    <div class="contenedor-nombre-usuario ion-margin-bottom">
+      <span class="nombre-autor"><b>{{nombre_usuario}}</b></span>
+      <span class="tiempo-publicacion">Ver mi perfil</span>
+    </div>
+    <ion-ripple-effect></ion-ripple-effect>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-padding">
+  <ion-button (click)="cerrarSesion()" expand="block">Salir</ion-button>
+</ion-footer>

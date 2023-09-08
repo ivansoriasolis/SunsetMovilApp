@@ -1,0 +1,79 @@
+.contenedor-general {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenedor-head {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenedor-head img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+
+.slogan {
+  font-size: 40px;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 30%;
+}
+
+.lbl-input {
+  margin-bottom: 7px;
+}
+
+.contenedor-ipt {
+  border-radius: 5px !important;
+  border: 2px solid rgb(77, 77, 77);
+  --background: rgb(59, 59, 59) !important;
+  --border-color: transparent;
+}
+
+.boton {
+  height: 45px;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: none;
+}
+
+ion-button img {
+  width: 25px;
+  height: 25px;
+  margin-right: 15px;
+}
+
+ion-button ion-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 15px;
+  color: #38393b;
+}
+
+ion-button .button-native {
+  border-width: 2px !important;
+  border-style: solid !important;
+  border-color: red !important;
+}
+
+.btn-google {
+  color: #38393b;
+}
+
+.button-inner {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: flex-start !important;
+}

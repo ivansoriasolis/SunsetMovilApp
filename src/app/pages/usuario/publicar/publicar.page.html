@@ -1,0 +1,43 @@
+<div class="header">
+  <div style="width: 20px">
+    <ion-back-button defaultHref="/usuario/main" id="btn-volver-login"
+      >Salir</ion-back-button
+    >
+  </div>
+  <h5 class="ion-no-margin">Nueva publicación</h5>
+</div>
+<ion-content [formGroup]="contenedorPublicacion" class="ion-padding">
+  <div class="contenedor-datos-publicacion ion-margin-bottom">
+    <div class="contenedor-foto-perfil">
+      <img [src]="url_imagen" />
+    </div>
+
+    <div class="contenedor-nombre-usuario ion-margin-bottom">
+      <span class="nombre-autor"><b>{{nombre_usuario}}</b></span>
+      <span class="tiempo-publicacion">Usuario</span>
+    </div>
+  </div>
+  <ion-card class="ion-no-margin ion-margin-top ion-margin-bottom">
+    <ion-card-content class="ion-no-padding">
+      <img
+        [src]="fotoTomada ? fotoTomada : '../../../../../../assets/iconos/facebook.png'"
+        alt="Imagen"
+      />
+    </ion-card-content>
+  </ion-card>
+  <textarea
+    formControlName="descripcion"
+    placeholder="Añade una descripción aquí"
+    class="ion-no-margin"
+    rows="1"
+  ></textarea>
+</ion-content>
+<ion-footer class="ion-padding ion-margin-bottom">
+  <ion-button
+    (click)="subirPublicacion()"
+    [disabled]="publicacionEnProgreso"
+    color="primary"
+    expand="block"
+    >{{textoBoton}}</ion-button
+  >
+</ion-footer>

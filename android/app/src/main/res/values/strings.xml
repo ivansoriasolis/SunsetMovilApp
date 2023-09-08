@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Sunset</string>
+    <string name="title_activity_main">Sunset</string>
+    <string name="package_name">com.sunset.sunset</string>
+    <string name="custom_url_scheme">com.sunset.sunset</string>
+
+    <string name="server_client_id">389824675125-sug3b1tpq3ut2fsfr7rkfbfnsmt8i6c2.apps.googleusercontent.com</string>
+</resources>

@@ -1,0 +1,39 @@
+<div class="contenedor-general">
+  <div class="contenedor-head ion-margin">
+    <img src="../../../assets/iconos/logo_sunset.jpg" />
+    <span class="slogan ion-margin-top"
+      ><b>Captura la belleza de los atardeceres</b></span
+    >
+  </div>
+  <form [formGroup]="formularioLogin" class="ion-margin-top" style="width: 90%">
+    <ion-button
+      class="boton btn-google ion-margin-top"
+      color="dark"
+      expand="block"
+      shape="round"
+      type="submit"
+      (click)="loguearConGoogle()"
+    >
+      <img src="../../../assets/iconos/google.png" />
+      <span color="medium">Ingresar con Google</span>
+    </ion-button>
+    <ion-button
+      class="boton btn-google ion-margin-top"
+      color="dark"
+      expand="block"
+      shape="round"
+      type="submit"
+      (click)="verAbout()"
+    >
+      <ion-icon name="information-circle-outline"></ion-icon>
+      <span color="medium">Acerca de la App</span>
+    </ion-button>
+  </form>
+</div>
+
+<ion-footer
+  class="ion-text-center ion-margin-bottom"
+  style="background-color: transparent; border: none; box-shadow: none"
+>
+  <span style="color: rgb(126, 126, 126)">Rublad's ™</span>
+</ion-footer>

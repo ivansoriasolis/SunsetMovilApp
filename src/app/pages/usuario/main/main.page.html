@@ -1,0 +1,31 @@
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="inicio">
+      <ion-icon name="home"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="personas">
+      <ion-icon name="people"></ion-icon>
+    </ion-tab-button>
+
+    <div class="ion-margin-horizontal ion-margin-bottom">
+      <button class="btn-agregar-publicacion" id="abrir-listado-opciones">
+        <ion-icon name="add"></ion-icon>
+      </button>
+
+      <ion-action-sheet
+        trigger="abrir-listado-opciones"
+        header="Nueva publicación"
+        [buttons]="actionSheetButtons"
+      ></ion-action-sheet>
+    </div>
+
+    <ion-tab-button tab="misfotos">
+      <ion-icon name="images"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="detalles">
+      <ion-icon name="menu-outline"></ion-icon>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

@@ -1,0 +1,47 @@
+<ion-content>
+  <div class="seccion-retroceder" style="width: 20px">
+    <ion-back-button defaultHref="/usuario/main/detalles" id="btn-volver-login"
+      >Salir</ion-back-button
+    >
+  </div>
+  <div class="contenedor-general ion-padding-horizontal">
+    <div class="contenedor-img-usuario">
+      <img id="imagen-usuario" [src]="url_imagen" />
+    </div>
+    <div class="contenedor-nombre-usuario ion-text-center">
+      <ion-text>
+        <span id="nombre-usuario"><b>{{nombre_usuario}}</b></span>
+      </ion-text>
+    </div>
+
+    <div class="seccion-detalles-usuario ion-padding">
+      <ion-card class="ion-padding" (click)="verSeguidores()">
+        <div class="detalle">
+          <ion-icon name="person"></ion-icon>
+          <span>Seguidores</span>
+        </div>
+        <div class="contenido-detalle">
+          <span #contenedorSeguidores>{{cantidadSeguidores}}</span>
+        </div>
+      </ion-card>
+      <ion-card class="ion-padding" (click)="verSiguiendo()">
+        <div class="detalle">
+          <ion-icon name="person"></ion-icon>
+          <span>Siguiendo</span>
+        </div>
+        <div class="contenido-detalle">
+          <span>{{cantidadSeguidos}}</span>
+        </div>
+      </ion-card>
+      <ion-card class="ion-padding" (click)="verMisPublicaciones()">
+        <div class="detalle">
+          <ion-icon name="images"></ion-icon>
+          <span>Publicaciones</span>
+        </div>
+        <div class="contenido-detalle">
+          <span>{{cantidadPublicaciones}}</span>
+        </div>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

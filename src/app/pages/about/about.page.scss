@@ -1,0 +1,17 @@
+.contenedor-head {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenedor-head img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+
+.slogan {
+  font-size: 40px;
+  text-align: center;
+}

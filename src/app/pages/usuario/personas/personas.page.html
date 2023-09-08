@@ -1,0 +1,44 @@
+<ion-content class="ion-padding-vertical">
+  <ion-list
+    *ngIf="moduloCargado"
+    class="ion-margin-horizontal"
+    style="--background: transparent"
+  >
+    <div
+      *ngIf="listaUsuarios.length == 0"
+      class="ion-padding-horizontal ion-text-center"
+    >
+      <span style="color: #c2c2c2">No se encontraron nuevos usuarios</span>
+    </div>
+
+    <div
+      *ngIf="listaUsuarios.length != 0"
+      style="display: flex; flex-direction: column; gap: 10px"
+    >
+      <ion-item *ngFor="let dato of listaUsuarios" lines="none">
+        <div class="contenedor-datos-publicacion">
+          <div class="contenedor-img">
+            <img [src]="dato.foto" />
+          </div>
+          <div
+            class="contenedor-nombre-fecha"
+            (click)="verPerfilUsuario(dato.uid_usuario, dato.foto, dato.nombre)"
+          >
+            <span class="nombre-autor"><b>{{dato.nombre}}</b></span>
+            <span class="tiempo-publicacion" style="color: #c2c2c2"
+              >Ver detalles</span
+            >
+          </div>
+        </div>
+      </ion-item>
+    </div>
+  </ion-list>
+
+  <ion-item *ngIf="!moduloCargado" class="ion-padding-horizontal" lines="none">
+    <ion-spinner
+      color="medium"
+      name="crescent"
+      style="width: 50px; height: 50px; margin: 0 auto"
+    ></ion-spinner>
+  </ion-item>
+</ion-content>

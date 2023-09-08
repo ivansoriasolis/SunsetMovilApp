@@ -1,0 +1,295 @@
+<div
+  class="seccion-retroceder"
+  style="width: 100px; display: flex; align-items: center"
+>
+  <ion-back-button defaultHref="/usuario/perfilusuario" id="btn-volver-login"
+    >Salir</ion-back-button
+  >
+  <span><b>Publicaciones</b></span>
+</div>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="cargarModulo($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ng-container *ngIf="moduloCargado">
+    <div
+      *ngIf="publicaciones.length == 0"
+      class="ion-padding-horizontal ion-text-center"
+    >
+      <span style="color: #c2c2c2">El usuario aún no tiene publicaciones</span>
+    </div>
+
+    <div *ngIf="publicaciones.length != 0">
+      <ion-card *ngFor="let datosPublicacion of publicaciones">
+        <ion-card-header>
+          <div class="contenedor-cabecera">
+            <div class="contenedor-datos-publicacion">
+              <div class="contenedor-img">
+                <img [src]="datosPublicacion.foto_autor" />
+              </div>
+              <div class="contenedor-nombre-fecha">
+                <span
+                  class="nombre-autor"
+                  (click)="verPerfilUsuario(datosPublicacion.uid_autor, datosPublicacion.foto_autor, datosPublicacion.autor)"
+                  ><b>{{datosPublicacion.autor}}</b></span
+                >
+                <span class="tiempo-publicacion"
+                  >Hace {{datosPublicacion.fecha}}</span
+                >
+              </div>
+            </div>
+            <div>
+              <button
+                (click)="idPublicacionReportar = datosPublicacion.id"
+                class="btn-detalles"
+                id="abrir-listado-detalles-fotos-usuario-{{datosPublicacion.id}}"
+              >
+                <ion-icon name="ellipsis-horizontal"></ion-icon>
+              </button>
+              <ion-action-sheet
+                trigger="abrir-listado-detalles-fotos-usuario-{{datosPublicacion.id}}"
+                [buttons]="botonesAccionInicio"
+              ></ion-action-sheet>
+            </div>
+          </div>
+        </ion-card-header>
+
+        <ion-card-content>
+          <span>{{datosPublicacion.descripcion}}</span>
+          <img [src]="datosPublicacion.imagen" />
+          <div class="contenedor-footer">
+            <button
+              (click)="darMeEncanta(datosPublicacion.id, ref, ref2)"
+              class="btn-footer btn-like"
+            >
+              <ion-icon
+                [name]="publicacionesConMeEncanta.includes(datosPublicacion.id) ? 'heart' : 'heart-outline'"
+                #ref
+              ></ion-icon>
+            </button>
+
+            <button
+              data-modal-trigger="comentarios"
+              (click)="abrirModalComentarios(datosPublicacion.id)"
+              class="btn-footer btn-comentar"
+            >
+              <ion-icon name="chatbubble-outline"></ion-icon>
+            </button>
+
+            <button
+              (click)="compartirContenido(datosPublicacion.imagen)"
+              class="btn-footer btn-compartir"
+            >
+              <ion-icon name="share-social-outline"></ion-icon>
+            </button>
+          </div>
+        </ion-card-content>
+        <div class="ion-padding-horizontal ion-padding-bottom">
+          <span>
+            <b #ref2
+              >{{ datosPublicacion.me_encanta == 0 ? "¡Sé el primero en dar me
+              encanta!" : datosPublicacion.me_encanta + " me encanta" }}</b
+            >
+          </span>
+        </div>
+      </ion-card>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!moduloCargado">
+    <ion-card class="ion-padding-bottom" *ngFor="let item of [].constructor(5)">
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text
+            [animated]="true"
+            style="border-radius: 50%"
+          ></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <p>
+            <ion-skeleton-text
+              [animated]="true"
+              style="width: 60%"
+            ></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text
+              [animated]="true"
+              style="width: 30%"
+            ></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item class="second-thumbnail">
+        <ion-thumbnail
+          slot="start"
+          class="circle-thumbnail"
+          style="height: auto"
+        >
+          <ion-skeleton-text
+            [animated]="true"
+            style="border-radius: 7px; width: 308px; height: 205px"
+          ></ion-skeleton-text>
+        </ion-thumbnail>
+      </ion-item>
+    </ion-card>
+  </ng-container>
+
+  <ion-modal
+    *ngIf="moduloCargado"
+    (ionModalDidDismiss)="onModalDismiss()"
+    #modal
+    [initialBreakpoint]="0.75"
+    [breakpoints]="[0, 0.25, 0.5, 0.75, 1]"
+    style="border-radius: 5px 5px 0 0"
+  >
+    <ng-template>
+      <ion-content>
+        <ion-item
+          lines="none"
+          class="ion-text-center"
+          style="
+            width: 100%;
+            --background: trasparent;
+            margin-top: 7px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #c2c2c2;
+          "
+        >
+          <ion-label>Comentarios</ion-label>
+        </ion-item>
+
+        <ion-item
+          *ngIf="!comentariosCargados"
+          class="ion-margin"
+          lines="none"
+          style="--background: trasparent"
+        >
+          <ion-spinner
+            color="medium"
+            name="crescent"
+            style="width: 50px; height: 50px; margin: 0 auto"
+          ></ion-spinner>
+        </ion-item>
+
+        <div *ngIf="comentariosCargados">
+          <ion-item
+            *ngIf="comentarios.length == 0"
+            lines="none"
+            style="--background: trasparent"
+          >
+            <span style="color: #c2c2c2; margin: 0 auto"
+              >Aún no hay comentarios</span
+            >
+          </ion-item>
+
+          <div *ngIf="comentarios.length != 0">
+            <ion-item
+              *ngFor="let datoscomentario of comentarios; let last = last"
+              lines="none"
+              style="--background: trasparent"
+              class="ion-no-margin"
+              [style.margin-bottom.px]="last ? 70 : 20"
+            >
+              <div class="comentario" style="display: flex">
+                <div
+                  class="foto-perfil-comentario"
+                  style="width: 45px; margin-right: 8px"
+                >
+                  <img
+                    [src]="datoscomentario.foto_comentarista"
+                    alt="Foto de perfil"
+                    style="width: 40px; height: 40px; border-radius: 50%"
+                  />
+                </div>
+                <div
+                  class="contenido-comentario"
+                  style="width: calc(100% - 45px)"
+                >
+                  <div class="nombre-usuario-comentario">
+                    <b style="font-size: 14px"
+                      >{{datoscomentario.nombre_comentarista}}</b
+                    >
+                  </div>
+                  <div class="contenido-comentario" style="margin-top: 2px">
+                    <span style="color: #c2c2c2; font-size: 14px"
+                      >{{datoscomentario.comentario}}</span
+                    >
+                  </div>
+                  <div
+                    class="hora-comentario"
+                    style="margin-top: 5px; font-size: 11px; color: #8d8d8d"
+                  >
+                    <span>{{datoscomentario.fecha_comentario}}</span>
+                  </div>
+                </div>
+              </div>
+            </ion-item>
+          </div>
+        </div>
+        <ion-footer
+          [formGroup]="contenedorComentario"
+          style="position: fixed; bottom: 0; left: 0; right: 0"
+          color="primary"
+        >
+          <div
+            style="
+              padding: 6px 16px 6px 16px;
+              height: 100%;
+              width: 100%;
+              background-color: #2d2d2d;
+            "
+            class="contenedor-footer ion-padding"
+          >
+            <div style="width: 45px">
+              <img
+                [src]="this.userService.obtenerDatosLocalStorage()['url_foto']"
+                alt="Foto de perfil"
+                style="width: 40px; height: 40px; border-radius: 50%"
+              />
+            </div>
+
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                margin-left: -10px;
+              "
+            >
+              <input
+                formControlName="comentario"
+                type="text"
+                placeholder="Ingresa un comentario"
+                style="
+                  width: 80%;
+                  height: 80%;
+                  border: none;
+                  background-color: #2d2d2d;
+                  outline: none;
+                  color: #c2c2c2;
+                "
+              />
+              <ion-button
+                (click)="guardarComentario(botonPublicarComentario)"
+                style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  width: 40px !important;
+                  font-size: 10px;
+                "
+                #botonPublicarComentario
+              >
+                <ion-icon name="send"></ion-icon>
+              </ion-button>
+            </div>
+          </div>
+        </ion-footer>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

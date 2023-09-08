@@ -1,0 +1,84 @@
+<ion-content class="ion-padding-vertical">
+  <ion-content>
+    <ion-list
+      *ngIf="moduloCargado"
+      class="ion-margin-horizontal"
+      style="--background: transparent"
+    >
+      <div
+        *ngIf="reportes.length == 0"
+        class="ion-padding-horizontal ion-text-center"
+      >
+        <span style="color: #c2c2c2">No se encontraron reportes</span>
+      </div>
+
+      <div
+        *ngIf="reportes.length != 0"
+        style="display: flex; flex-direction: column; gap: 10px"
+      >
+        <ion-card
+          *ngFor="let dato of reportes"
+          lines="none"
+          class="ion-no-margin ion-padding"
+        >
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <span><b>Reportador: </b><br />{{dato.nombreReportador}}</span>
+            <span><b>Reportado: </b><br />{{dato.autorPublicacion}}</span>
+            <span><b>Razón: </b><br />{{dato.razon}}</span>
+            <b>Publicación: </b>
+          </div>
+          <div style="margin-top: 5px">
+            <span style="margin-bottom: 4px"
+              >{{dato.descripcionPublicacion}}</span
+            >
+            <img [src]="dato.fotoPublicacion" style="border-radius: 3px" />
+          </div>
+          <div
+            style="
+              margin-top: 5px;
+              display: flex;
+              flex-direction: column;
+              gap: 4px;
+            "
+          >
+            <ion-button
+              expand="block"
+              #botonBloquear
+              (click)="bloquearUsuario(dato.id_reportado, botonBloquear)"
+            >
+              Bloquear autor
+            </ion-button>
+            <ion-button
+              #botonReportar
+              (click)="eliminarReporte(dato.id, botonReportar)"
+              expand="block"
+              color="medium"
+            >
+              Eliminar reporte
+            </ion-button>
+            <ion-button
+              #botonEliminar
+              (click)="eliminarPublicacion(dato.id_publicacion, dato.id, botonEliminar)"
+              expand="block"
+              color="danger"
+            >
+              Eliminar publicación
+            </ion-button>
+          </div>
+        </ion-card>
+      </div>
+    </ion-list>
+
+    <ion-item
+      *ngIf="!moduloCargado"
+      class="ion-padding-horizontal"
+      lines="none"
+    >
+      <ion-spinner
+        color="medium"
+        name="crescent"
+        style="width: 50px; height: 50px; margin: 0 auto"
+      ></ion-spinner>
+    </ion-item>
+  </ion-content>
+</ion-content>

@@ -1,0 +1,76 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  border-bottom: 1px solid #6b6b6b;
+}
+
+.contenedor-datos-publicacion {
+  display: flex;
+  flex-direction: row;
+}
+
+.contenedor-nombre-usuario {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.nombre-autor {
+  color: #d9d9d9;
+}
+
+.tiempo-publicacion {
+  font-size: 11px;
+  margin-top: 5px;
+}
+
+ion-card {
+  border-radius: 7px;
+  width: 100%;
+}
+
+ion-card img {
+  width: 100%;
+  // height: 100%;
+}
+
+textarea {
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  font-size: 18px;
+  resize: none;
+  height: 45%;
+}
+
+textarea:focus {
+  border: none;
+  outline: none;
+}
+
+.contenedor-foto-perfil {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.contenedor-foto-perfil img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+ion-footer {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+ion-spinner {
+  width: 100px;
+  height: 100px;
+  z-index: 9999 !important;
+}

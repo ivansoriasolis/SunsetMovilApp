@@ -1,0 +1,62 @@
+<ion-content>
+  <div class="seccion-retroceder" style="width: 20px">
+    <ion-back-button defaultHref="/usuario/main/inicio" id="btn-volver-login"
+      >Salir</ion-back-button
+    >
+  </div>
+  <div class="contenedor-general ion-padding-horizontal">
+    <div class="contenedor-img-usuario">
+      <img id="imagen-usuario" [src]="urlFotoUsuario" />
+    </div>
+    <div class="contenedor-nombre-usuario ion-text-center">
+      <ion-text>
+        <span id="nombre-usuario"><b>{{nombreUsuario}}</b></span>
+      </ion-text>
+    </div>
+    <div class="ion-padding-horizontal" style="margin-top: 20px">
+      <p *ngIf="!moduloCargado" class="ion-no-padding ion-no-margin">
+        <ion-skeleton-text
+          [animated]="true"
+          style="width: 100%; height: 36px"
+        ></ion-skeleton-text>
+      </p>
+      <ion-button
+        (click)="seguirUsuario(contenedorSeguidores, nombreUsuario, urlFotoUsuario)"
+        *ngIf="moduloCargado"
+        [id]="siguiendo ? 'btn-seguir-activo' : ''"
+        expand="block"
+      >
+        {{siguiendo == true ? 'Dejar de seguir' : 'Seguir'}}
+      </ion-button>
+    </div>
+    <div class="seccion-detalles-usuario ion-padding">
+      <ion-card class="ion-padding" (click)="verSeguidoresUsuario()">
+        <div class="detalle">
+          <ion-icon name="person"></ion-icon>
+          <span>Seguidores</span>
+        </div>
+        <div class="contenido-detalle">
+          <span #contenedorSeguidores>{{cantidadSeguidores}}</span>
+        </div>
+      </ion-card>
+      <ion-card class="ion-padding" (click)="verSeguidosUsuario()">
+        <div class="detalle">
+          <ion-icon name="person"></ion-icon>
+          <span>Siguiendo</span>
+        </div>
+        <div class="contenido-detalle">
+          <span>{{cantidadSeguidos}}</span>
+        </div>
+      </ion-card>
+      <ion-card class="ion-padding" (click)="verPublicacionesUsuario()">
+        <div class="detalle">
+          <ion-icon name="images"></ion-icon>
+          <span>Publicaciones</span>
+        </div>
+        <div class="contenido-detalle">
+          <span>{{cantidadPublicaciones}}</span>
+        </div>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "sunset",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
